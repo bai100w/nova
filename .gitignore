@@ -1,0 +1,5 @@
+__pycache__/
+*.py[cod]
+
+# Local reference corpus is derived from user-provided scripts and is not public.
+short-drama-creator/library/
