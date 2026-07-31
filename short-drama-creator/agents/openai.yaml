@@ -1,0 +1,4 @@
+interface:
+  display_name: "短剧剧本创作"
+  short_description: "基于参考剧本进行故事改编、灵感策划、分集设计和短剧创作"
+  default_prompt: "Use $short-drama-creator to turn my story idea into a production-ready short drama plan."
