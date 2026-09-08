@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>海外社媒信号报告｜报告模板</title>
+  <style>
+    :root {
+      --bg: oklch(16% 0.012 55);
+      --surface: oklch(20% 0.014 55);
+      --surface-2: oklch(24% 0.015 55);
+      --line: oklch(34% 0.018 55);
+      --text: oklch(92% 0.012 70);
+      --muted: oklch(70% 0.018 65);
+      --faint: oklch(55% 0.018 65);
+      --accent: oklch(73% 0.14 52);
+      --cyan: oklch(75% 0.10 205);
+      --violet: oklch(72% 0.12 300);
+      --green: oklch(75% 0.12 145);
+      --red: oklch(70% 0.16 25);
+      --radius: 14px;
+      --shadow: 0 24px 70px oklch(5% 0.01 55 / 0.32);
+    }
+
+    * { box-sizing: border-box; }
+    html {
+      min-height: 100%;
+      overflow-y: auto;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+      scroll-padding-top: 9.5rem;
+    }
+    body {
+      margin: 0;
+      min-height: 100%;
+      overflow-y: auto;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
+      touch-action: pan-y;
+      background:
+        radial-gradient(circle at 82% 8%, oklch(32% 0.05 45 / .26), transparent 27rem),
+        linear-gradient(180deg, oklch(18% 0.016 50), var(--bg) 28rem);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.62;
+      font-variant-numeric: tabular-nums;
+    }
+
+    a { color: inherit; }
+    a:focus-visible, button:focus-visible { outline: 3px solid var(--cyan); outline-offset: 3px; }
+    .skip-link { position: fixed; left: 1rem; top: -5rem; z-index: 100; background: var(--text); color: var(--bg); padding: .7rem 1rem; border-radius: 8px; }
+    .skip-link:focus { top: 1rem; }
+
+    .progress { position: fixed; inset: 0 0 auto; height: 3px; z-index: 90; background: var(--surface-2); }
+    .progress > span { display: block; height: 100%; width: 0; background: var(--accent); transform-origin: left; }
+
+    .topbar {
+      position: sticky; top: 0; z-index: 80;
+      background: oklch(17% 0.012 55 / .96);
+      border-bottom: 1px solid var(--line);
+    }
+    .topbar-inner { max-width: 1220px; margin: 0 auto; padding: .9rem 1.25rem .65rem; }
+    .brandline { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: .65rem; }
+    .brand { font-size: .78rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; color: var(--accent); }
+    .freshness { font-size: .75rem; color: var(--muted); }
+    nav { display: flex; gap: .35rem; overflow-x: auto; scrollbar-width: none; padding-bottom: .25rem; touch-action: pan-x; }
+    nav::-webkit-scrollbar { display: none; }
+    nav a { flex: 0 0 auto; text-decoration: none; color: var(--muted); font-size: .76rem; padding: .38rem .64rem; border-radius: 999px; border: 1px solid transparent; }
+    nav a:hover { color: var(--text); background: var(--surface-2); }
+    nav a[aria-current="true"] { color: var(--bg); background: var(--accent); font-weight: 750; }
+
+    main { max-width: 1220px; margin: 0 auto; padding: 4.5rem 1.25rem 7rem; }
+    .hero { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(18rem, .6fr); gap: 4rem; align-items: end; padding: 2rem 0 5.5rem; }
+    .eyebrow { margin: 0 0 1.1rem; color: var(--accent); font-size: .78rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+    h1 { max-width: 14ch; margin: 0; font-size: clamp(2.65rem, 7vw, 5.7rem); line-height: .97; letter-spacing: -.055em; }
+    .dek { max-width: 68ch; margin: 1.7rem 0 0; color: var(--muted); font-size: 1.05rem; }
+    .hero-meta { margin: 0; display: grid; gap: .85rem; }
+    .hero-meta div { display: grid; grid-template-columns: 7.5rem 1fr; gap: 1rem; padding-bottom: .7rem; border-bottom: 1px solid var(--line); }
+    dt { color: var(--faint); font-size: .76rem; text-transform: uppercase; letter-spacing: .08em; }
+    dd { margin: 0; color: var(--text); font-size: .9rem; }
+
+    section { padding: 4.75rem 0; border-top: 1px solid var(--line); }
+    .section-head { display: grid; grid-template-columns: 8rem minmax(0, 1fr); gap: 1.5rem; margin-bottom: 2.4rem; }
+    .index { color: var(--accent); font: 750 .8rem/1.4 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .08em; }
+    h2 { margin: 0; font-size: 2rem; line-height: 1.13; letter-spacing: -.03em; }
+    h3 { margin: 0 0 .55rem; font-size: 1rem; }
+    .section-intro { max-width: 72ch; margin: .85rem 0 0; color: var(--muted); }
+
+    .signal-strip { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+    .signal-strip > div { min-height: 8.2rem; padding: 1.2rem; background: var(--surface); }
+    .signal-strip > div + div { border-left: 1px solid var(--line); }
+    .signal-strip strong { display: block; margin-top: 1rem; font-size: 1.1rem; }
+    .signal-strip span { color: var(--muted); font-size: .78rem; }
+
+    .empty { padding: 1.4rem; border: 1px dashed var(--line); border-radius: var(--radius); background: oklch(19% 0.012 55); color: var(--muted); }
+    .empty strong { display: block; color: var(--text); margin-bottom: .3rem; }
+
+    .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+    table { width: 100%; min-width: 760px; border-collapse: collapse; font-size: .84rem; }
+    th, td { padding: .85rem 1rem; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
+    th { color: var(--muted); font-size: .72rem; letter-spacing: .07em; text-transform: uppercase; background: var(--surface-2); }
+    tr:last-child td { border-bottom: 0; }
+
+    .badge { display: inline-flex; align-items: center; gap: .35rem; padding: .22rem .5rem; border-radius: 999px; font: 750 .68rem/1.2 ui-monospace, SFMono-Regular, Consolas, monospace; border: 1px solid currentColor; }
+    .direct { color: var(--green); } .proxy { color: var(--cyan); } .estimate { color: var(--accent); } .model { color: var(--violet); } .inference { color: oklch(78% .08 85); } .risk { color: var(--red); }
+
+    .route-layout { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(18rem, .75fr); gap: 1.2rem; }
+    .route-board { border: 1px solid var(--line); border-radius: var(--radius); padding: 1.2rem; background: var(--surface); }
+    .route-row { display: grid; grid-template-columns: 8rem 1fr 4rem; gap: .9rem; align-items: center; padding: .72rem 0; }
+    .route-row + .route-row { border-top: 1px solid var(--line); }
+    .track { height: .52rem; background: var(--surface-2); border-radius: 999px; overflow: hidden; }
+    .track span { display: block; height: 100%; width: var(--score, 0%); background: var(--cyan); }
+    .route-row[data-status="primary"] .track span { background: var(--accent); }
+
+    .argument-list { list-style: none; padding: 0; margin: 0; counter-reset: argument; }
+    .argument-list li { counter-increment: argument; display: grid; grid-template-columns: 3rem minmax(0, 1fr); gap: 1rem; padding: 1.35rem 0; border-top: 1px solid var(--line); }
+    .argument-list li::before { content: counter(argument, decimal-leading-zero); color: var(--accent); font: 800 .78rem ui-monospace, SFMono-Regular, Consolas, monospace; }
+    .argument-list p { max-width: 75ch; margin: .35rem 0 0; color: var(--muted); }
+
+    .split { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+    .panel { padding: 1.25rem; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+    .panel > p { color: var(--muted); }
+    .chips { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: 1rem; }
+    .chip { padding: .35rem .62rem; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); font-size: .76rem; }
+
+    .script { display: grid; grid-template-columns: 7rem minmax(0, 1fr) minmax(15rem, .42fr); gap: 1.2rem; padding: 1.4rem 0; border-top: 1px solid var(--line); }
+    .script-number { color: var(--accent); font: 800 .78rem ui-monospace, SFMono-Regular, Consolas, monospace; }
+    .script p { max-width: 72ch; color: var(--muted); }
+    .script-meta { font-size: .78rem; color: var(--muted); }
+
+    .decision-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: .7rem; }
+    .decision { min-height: 12rem; padding: 1rem; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+    .decision[data-level="do"] { border-color: oklch(56% .09 52); }
+    .decision[data-level="test"] { border-color: oklch(56% .07 205); }
+    .decision[data-level="watch"] { border-color: oklch(50% .06 300); }
+    .decision[data-level="stop"] { border-color: oklch(52% .10 25); }
+    .decision p { color: var(--muted); font-size: .82rem; }
+
+    .timeline { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 2px solid var(--line); }
+    .phase { position: relative; padding: 1.5rem 1.2rem 0 0; }
+    .phase::before { content: ""; position: absolute; top: -.44rem; left: 0; width: .72rem; height: .72rem; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 5px var(--bg); }
+    .phase + .phase { padding-left: 1.2rem; }
+    .phase ul { padding-left: 1.1rem; color: var(--muted); }
+
+    .source-link { color: var(--cyan); text-underline-offset: .2em; }
+    footer { max-width: 1220px; margin: 0 auto; padding: 1.5rem 1.25rem 3.5rem; color: var(--faint); border-top: 1px solid var(--line); font-size: .78rem; }
+
+    @media (max-width: 900px) {
+      .hero, .route-layout { grid-template-columns: 1fr; gap: 2.2rem; }
+      .hero { padding-top: 1rem; }
+      .signal-strip { grid-template-columns: 1fr 1fr; }
+      .signal-strip > div:nth-child(3) { border-left: 0; border-top: 1px solid var(--line); }
+      .signal-strip > div:nth-child(4) { border-top: 1px solid var(--line); }
+      .decision-grid { grid-template-columns: 1fr 1fr; }
+      .script { grid-template-columns: 5rem 1fr; }
+      .script-meta { grid-column: 2; }
+    }
+
+    @media (max-width: 620px) {
+      html { scroll-padding-top: 8.5rem; }
+      main { padding-top: 3rem; }
+      h1 { font-size: 3rem; }
+      .section-head { grid-template-columns: 1fr; gap: .4rem; }
+      .split, .signal-strip, .decision-grid, .timeline { grid-template-columns: 1fr; }
+      .signal-strip > div + div { border-left: 0; border-top: 1px solid var(--line); }
+      .route-row { grid-template-columns: 6rem 1fr 3rem; }
+      .script { grid-template-columns: 1fr; }
+      .script-meta { grid-column: auto; }
+      .timeline { border-top: 0; border-left: 2px solid var(--line); }
+      .phase, .phase + .phase { padding: 0 0 2rem 1.5rem; }
+      .phase::before { top: .35rem; left: -.43rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到正文</a>
+  <div class="progress" aria-hidden="true"><span id="progress-bar"></span></div>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brandline">
+        <div class="brand">Signal Atlas · Overseas Social Mining</div>
+        <div class="freshness">生成：<span data-field="generation-date">未指定</span> · 刷新：<span data-field="refresh-date">未指定</span></div>
+      </div>
+      <nav aria-label="报告章节">
+        <a href="#summary">摘要</a><a href="#entity">对象</a><a href="#routing">路由</a><a href="#evidence">证据</a>
+        <a href="#trends">趋势</a><a href="#ugc">UGC</a><a href="#nodes">节点</a><a href="#language">语言</a>
+        <a href="#voc">VOC</a><a href="#scripts">脚本</a><a href="#entity-deep-dive">专项</a><a href="#opportunities">机会</a>
+        <a href="#roadmap">路线图</a><a href="#sources">来源</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="report-title">
+      <div>
+        <p class="eyebrow">海外社媒信号决策报告</p>
+        <h1 id="report-title" data-field="report-title">待填入研究对象</h1>
+        <p class="dek" data-field="executive-dek">本模板要求先完成对象消歧和平台路由，再填入已核验的趋势、UGC、社区、VOC 与行动结论。没有证据的字段保持为空并解释原因。</p>
+      </div>
+      <dl class="hero-meta">
+        <div><dt>对象原文</dt><dd data-field="original-tag">未指定</dd></div>
+        <div><dt>对象类型</dt><dd data-field="entity-type">未指定</dd></div>
+        <div><dt>目标市场</dt><dd data-field="market">未指定</dd></div>
+        <div><dt>研究语言</dt><dd data-field="language">未指定</dd></div>
+        <div><dt>时间窗口</dt><dd data-field="window">未指定</dd></div>
+        <div><dt>主挖平台</dt><dd data-field="primary-platforms">尚未路由</dd></div>
+        <div><dt>采集平台数</dt><dd data-field="collected-platform-count">未取得</dd></div>
+        <div><dt>有效样本数</dt><dd data-field="sample-count">未取得</dd></div>
+        <div><dt>总体置信度</dt><dd data-field="confidence">尚未评估</dd></div>
+      </dl>
+    </section>
+
+    <section id="summary">
+      <div class="section-head"><div class="index">01 / SUMMARY</div><div><h2>执行摘要</h2><p class="section-intro">结论先行，但每个结论必须回到来源、时间窗和证据类型。</p></div></div>
+      <div class="signal-strip">
+        <div><span>主挖平台</span><strong data-field="summary-platforms">未取得</strong></div>
+        <div><span>有效样本</span><strong data-field="sample-count">未取得</strong></div>
+        <div><span>跨平台母题</span><strong data-field="motif-count">未取得</strong></div>
+        <div><span>决策状态</span><strong data-field="decision-state">待验证</strong></div>
+      </div>
+      <ol class="argument-list" data-list="key-findings">
+        <li><div><h3>待填入已核验证据</h3><p>这里放置最重要的判断、反证、置信度和下一步动作。</p></div></li>
+      </ol>
+    </section>
+
+    <section id="entity">
+      <div class="section-head"><div class="index">02 / ENTITY</div><div><h2>对象与标签语义树</h2><p class="section-intro">先解决“我们在搜谁/什么”，再解决“哪里最值得搜”。</p></div></div>
+      <div class="split">
+        <div class="panel"><h3>对象卡</h3><div class="empty"><strong>消歧尚未完成</strong><span data-field="disambiguation-note">填入候选身份、确认字段和当前状态。</span></div></div>
+        <div class="panel"><h3>查询词组</h3><div class="chips" data-list="query-chips"><span class="chip">核心实体</span><span class="chip">别名/本地化</span><span class="chip">动作/场景</span><span class="chip">受众/问题</span><span class="chip">格式/黑话</span><span class="chip">排除词</span></div></div>
+      </div>
+    </section>
+
+    <section id="routing">
+      <div class="section-head"><div class="index">03 / ROUTING</div><div><h2>平台路由地图</h2><p class="section-intro">路由图表达研究资源分配，不是平台规模榜。</p></div></div>
+      <div class="route-layout">
+        <div class="route-board" aria-label="平台相关度示意，正式报告需替换为核验结果">
+          <div class="route-row" data-status="primary"><strong>主挖 A</strong><div class="track"><span style="--score:0%"></span></div><span>待评</span></div>
+          <div class="route-row" data-status="primary"><strong>主挖 B</strong><div class="track"><span style="--score:0%"></span></div><span>待评</span></div>
+          <div class="route-row"><strong>验证平台</strong><div class="track"><span style="--score:0%"></span></div><span>待评</span></div>
+        </div>
+        <div class="panel"><h3>路由理由</h3><p data-field="routing-rationale">待填入对象原生适配、信号密度、近期活跃、市场相关和证据可得性。</p></div>
+      </div>
+      <h3 style="margin-top:2rem">已排除平台</h3>
+      <div class="table-wrap"><table><thead><tr><th>平台</th><th>探测查询</th><th>状态</th><th>排除/降级理由</th><th>置信度</th></tr></thead><tbody data-list="excluded-platforms"><tr><td colspan="5">待完成轻量探测后填入，不得以“没时间”作为理由。</td></tr></tbody></table></div>
+    </section>
+
+    <section id="evidence">
+      <div class="section-head"><div class="index">04 / EVIDENCE</div><div><h2>数据范围与证据边界</h2><p class="section-intro">不同平台的原始播放、互动和搜索指数不直接横比。</p></div></div>
+      <div class="chips"><span class="badge direct">direct · 直接</span><span class="badge proxy">proxy · 代理</span><span class="badge estimate">estimate · 估算</span><span class="badge model">model · 模型</span><span class="badge inference">inference · 推断</span></div>
+      <div class="table-wrap" style="margin-top:1.2rem"><table><thead><tr><th>平台</th><th>市场/窗口</th><th>样本</th><th>可证明</th><th>不可证明</th><th>限制</th></tr></thead><tbody data-list="evidence-scope"><tr><td colspan="6">待填入已核验的数据范围和缺失项。</td></tr></tbody></table></div>
+    </section>
+
+    <section id="trends">
+      <div class="section-head"><div class="index">05 / TRENDS</div><div><h2>趋势、Meme 与生命周期</h2><p class="section-intro">区分原生萌芽、跨平台迁移、事件同步、搬运假象和商业放大。</p></div></div>
+      <ol class="argument-list" data-list="trend-motifs"><li><div><h3>待填入内容母题</h3><p>记录模板、语义、平台、创作者多样性、生命周期、支持信号和反证。</p></div></li></ol>
+    </section>
+
+    <section id="ugc">
+      <div class="section-head"><div class="index">06 / UGC</div><div><h2>高互动内容与 UGC 样本</h2><p class="section-intro">同时保留原型、突破、反例、争议和商业样本。</p></div></div>
+      <div class="table-wrap"><table><thead><tr><th>角色</th><th>平台/作者</th><th>格式与钩子</th><th>平台内异常</th><th>证据</th><th>链接</th></tr></thead><tbody data-list="ugc-samples"><tr><td colspan="6">待填入已核验原始页面；没有样本时说明原因。</td></tr></tbody></table></div>
+    </section>
+
+    <section id="nodes">
+      <div class="section-head"><div class="index">07 / NODES</div><div><h2>创作者、社区与桥接节点</h2><p class="section-intro">粉丝量不是唯一优先级，重点看语境、稳定性和跨圈层能力。</p></div></div>
+      <div class="table-wrap"><table><thead><tr><th>节点</th><th>类型/分层</th><th>平台/社区</th><th>规模证据与日期</th><th>匹配理由</th><th>合作/研究方式</th><th>风险/链接</th></tr></thead><tbody data-list="nodes"><tr><td colspan="7">待填入平台内分层定义、规模证据、观测日期和原始链接。</td></tr></tbody></table></div>
+    </section>
+
+    <section id="language">
+      <div class="section-head"><div class="index">08 / LANGUAGE</div><div><h2>Hashtag、关键词与社群语言</h2><p class="section-intro">核心词、俗称、动作、场景、问题、二创格式、黑话和反向词分组呈现。</p></div></div>
+      <div class="split"><div class="panel"><h3>机会词</h3><div class="chips" data-list="opportunity-terms"><span class="chip">待填入</span></div></div><div class="panel"><h3>污染与排除词</h3><div class="chips" data-list="negative-terms"><span class="chip">待填入</span></div></div></div>
+    </section>
+
+    <section id="voc">
+      <div class="section-head"><div class="index">09 / VOC</div><div><h2>用户声音、争议与未满足需求</h2><p class="section-intro">高赞评论不是多数意见，讽刺、反串和圈内梗必须回到上下文。</p></div></div>
+      <div class="table-wrap"><table><thead><tr><th>主题</th><th>用户原意</th><th>来源群体</th><th>频率/强度</th><th>反方/反例</th><th>机会假设</th></tr></thead><tbody data-list="voc"><tr><td colspan="6">待完成评论与社区语义编码。</td></tr></tbody></table></div>
+    </section>
+
+    <section id="scripts">
+      <div class="section-head"><div class="index">10 / SCRIPTS</div><div><h2>内容公式与可执行脚本</h2><p class="section-intro">每个脚本必须原生于目标平台，并包含验证与停止门槛。</p></div></div>
+      <div class="script" data-list="scripts"><div class="script-number">SCRIPT 01</div><div><h3>待填入已验证方向</h3><p>钩子、结构、声音/字幕、对象自然进入方式、互动触发和参考证据。</p></div><div class="script-meta">平台：待定<br>创作者：待定<br>成功/停止：待定</div></div>
+    </section>
+
+    <section id="entity-deep-dive">
+      <div class="section-head"><div class="index">11 / DEEP DIVE</div><div><h2>对象专项分析</h2><p class="section-intro">按对象类型只保留商品/品牌、人物或 IP 的相关模块。</p></div></div>
+      <div class="split"><div class="panel"><h3 data-field="deep-dive-title">条件模块尚未选择</h3><p data-field="deep-dive-body">IP 应覆盖角色、关系/CP、剧情、二创生态、官方/非官方和版权；人物应覆盖身份、主阵地与声誉边界；商品应覆盖场景、痛点、购买疑问与 UGC。</p></div><div class="panel"><h3>硬边界</h3><p data-field="deep-dive-risks">待填入隐私、版权、商标、未成年人、品牌安全或平台规则。</p></div></div>
+    </section>
+
+    <section id="opportunities">
+      <div class="section-head"><div class="index">12 / OPPORTUNITY</div><div><h2>机会优先级与风险门槛</h2><p class="section-intro">风险硬门槛不能被传播潜力抵消。</p></div></div>
+      <div class="decision-grid"><div class="decision" data-level="do"><h3>立即做</h3><p>高适配、高证据、风险已清。</p></div><div class="decision" data-level="test"><h3>测试</h3><p>有明确假设和低成本验证。</p></div><div class="decision" data-level="watch"><h3>观察</h3><p>信号早、证据不足或窗口未到。</p></div><div class="decision" data-level="stop"><h3>不做</h3><p>硬门槛未过或语义不适配。</p></div></div>
+    </section>
+
+    <section id="roadmap">
+      <div class="section-head"><div class="index">13 / ROADMAP</div><div><h2>30 / 60 / 90 天行动路线</h2><p class="section-intro">从验证、版本化到周期放大，每阶段都有成功、调整和停止条件。</p></div></div>
+      <div class="timeline"><div class="phase"><h3>0–30 天 · 验证</h3><ul><li>待填入核心假设</li><li>补齐证据缺口</li><li>建立节点短名单</li></ul></div><div class="phase"><h3>31–60 天 · 版本化</h3><ul><li>复制已验证格式</li><li>跨平台改写</li><li>淘汰弱方向</li></ul></div><div class="phase"><h3>61–90 天 · 放大</h3><ul><li>结合周期/事件</li><li>沉淀长期节点</li><li>刷新生命周期</li></ul></div></div>
+    </section>
+
+    <section id="sources">
+      <div class="section-head"><div class="index">14 / SOURCES</div><div><h2>来源索引与方法限制</h2><p class="section-intro">来源按结论编号，保证任何数字、引语和判断都能回溯。</p></div></div>
+      <div class="table-wrap"><table><thead><tr><th>ID</th><th>来源</th><th>平台/市场</th><th>日期</th><th>证据类型</th><th>支持结论</th><th>限制</th></tr></thead><tbody data-list="sources"><tr><td colspan="7">待填入原始链接。外链示例格式：<a class="source-link" href="https://example.com" target="_blank" rel="noopener noreferrer">来源标题</a></td></tr></tbody></table></div>
+    </section>
+  </main>
+
+  <footer>海外社媒信号报告模板 · 先路由，后深挖 · 代理指标不等于销量</footer>
+  <script>
+    (() => {
+      const bar = document.getElementById('progress-bar');
+      const links = [...document.querySelectorAll('nav a')];
+      const sections = links.map(link => document.querySelector(link.getAttribute('href'))).filter(Boolean);
+
+      const updateProgress = () => {
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        bar.style.width = `${max > 0 ? Math.min(100, window.scrollY / max * 100) : 0}%`;
+      };
+
+      const observer = new IntersectionObserver(entries => {
+        const visible = entries.filter(entry => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (!visible) return;
+        links.forEach(link => link.removeAttribute('aria-current'));
+        const active = links.find(link => link.getAttribute('href') === `#${visible.target.id}`);
+        if (active) {
+          active.setAttribute('aria-current', 'true');
+          active.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }
+      }, { rootMargin: '-28% 0px -62% 0px', threshold: [0, .2, .6] });
+
+      sections.forEach(section => observer.observe(section));
+      window.addEventListener('scroll', updateProgress, { passive: true });
+      updateProgress();
+    })();
+  </script>
+</body>
+</html>

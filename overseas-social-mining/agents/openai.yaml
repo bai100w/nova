@@ -1,0 +1,4 @@
+interface:
+  display_name: "海外社媒挖掘"
+  short_description: "按对象智能路由海外平台，挖掘趋势、创作者、VOC并生成HTML决策报告"
+  default_prompt: "$overseas-social-mining：如果用户只输入一个关键词，不要直接开始研究。先引导补齐对象类型、目标市场/语言、时间窗和研究目标，并提供合理默认值；用户补齐后或明确要求直接开始，再完成平台路由、研究和可追溯的单文件 HTML 报告。"
