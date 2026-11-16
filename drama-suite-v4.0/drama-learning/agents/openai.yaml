@@ -1,0 +1,4 @@
+interface:
+  display_name: "参考学习与复盘"
+  short_description: "拆解参考、全量学习账号、写参考卡，每集复盘，把有效做法按授权沉淀为项目规律或档案。"
+  default_prompt: "使用 $drama-learning，读取当前剧集项目的相关槽位和已有规律，完成本次学习或复盘。"

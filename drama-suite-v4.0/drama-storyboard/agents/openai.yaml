@@ -1,0 +1,4 @@
+interface:
+  display_name: "分镜"
+  short_description: "按镜头语法逐镜设计景别、机位、构图、运动、表演、光线和时长，做预演包和生成分包。"
+  default_prompt: "使用 $drama-storyboard，读取当前剧集项目的定稿剧本、视觉圣经和冻结资产，完成本集分镜。"

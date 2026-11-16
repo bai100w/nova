@@ -1,0 +1,4 @@
+interface:
+  display_name: "资产"
+  short_description: "设计、制作、登记和验收角色、场景、道具、风格对标、声线五类资产，管理控制权和版本。"
+  default_prompt: "使用 $drama-assets，读取当前剧集项目的拆解表、视觉圣经和资产索引，完成本次资产任务。"

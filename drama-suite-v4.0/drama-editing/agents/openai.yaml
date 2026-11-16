@@ -1,0 +1,4 @@
+interface:
+  display_name: "剪辑与后期"
+  short_description: "组装动态预演，写剪辑决策单，设计音画节拍、声音、调色、字幕包装，执行终检。"
+  default_prompt: "使用 $drama-editing，读取当前集的素材、审片记录和分镜，完成本次剪辑或后期任务。"

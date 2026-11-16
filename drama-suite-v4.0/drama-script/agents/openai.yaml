@@ -1,0 +1,4 @@
+interface:
+  display_name: "剧本"
+  short_description: "按开发阶梯写剧本，做剧本体检、朗读计时、可制作性审查、逐段拆解和台词表。"
+  default_prompt: "使用 $drama-script，读取当前剧集项目的档案和设定，完成本次剧本任务。"

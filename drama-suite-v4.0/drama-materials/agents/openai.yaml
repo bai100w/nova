@@ -1,0 +1,4 @@
+interface:
+  display_name: "宣发物料"
+  short_description: "设计封面、海报、标题、简介和发布文案，保证手机上可读、与正片一致。"
+  default_prompt: "使用 $drama-materials，读取当前集的成片、节拍表和已确认资产，完成本次物料任务。"

@@ -1,0 +1,4 @@
+interface:
+  display_name: "剧集总控"
+  short_description: "立项定档、建项目资料库、安排各制作模块、把关资产、预演、终检三道关卡，管理版本和进度。"
+  default_prompt: "使用 $drama-control，读取当前剧集项目资料，判断所处阶段并完成本次任务。"

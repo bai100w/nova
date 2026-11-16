@@ -1,0 +1,4 @@
+interface:
+  display_name: "导演与视觉开发"
+  short_description: "写导演阐述和情绪曲线，制定视觉圣经、画面预设、表演基调、声音概念，做风格测试。"
+  default_prompt: "使用 $drama-direction，读取当前剧集项目的剧本和档案，为项目确定基调和视觉方向。"
